@@ -1,0 +1,48 @@
+{
+  "name": "distributed-storage",
+  "version": "1.0.0",
+  "description": "Distributed storage leveraging IPFS and Ethereum chain",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint . --ext '.ts'",
+    "prettier": "prettier -c --write '**/*'",
+    "build": "tsc -p tsconfig.json",
+    "start": "node ./dist/index.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/acuderman/distributed-storage.git"
+  },
+  "keywords": [
+    "ipfs",
+    "ethereum",
+    "distributed",
+    "storage"
+  ],
+  "author": "Andraz Cuderman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acuderman/distributed-storage/issues"
+  },
+  "homepage": "https://github.com/acuderman/distributed-storage#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.5.0",
+    "prettier": "2.8.8",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.0.4",
+    "ts-node": "^10.9.1"
+  },
+  "bin": "dist/index.js",
+  "preferGlobal": true,
+  "dependencies": {}
+}
