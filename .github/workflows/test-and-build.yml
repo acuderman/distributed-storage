@@ -5,23 +5,15 @@ on:
       - "**"
 
 jobs:
-  lint:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Package install
+        run: npm ci
       - name: Lint
         run: npm run lint
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
       - name: Test
         run: npm run test
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
       - name: Build
         run: npm run build
