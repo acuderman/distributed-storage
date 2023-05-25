@@ -9,11 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Package install
         run: npm ci
+      - name: Install truffle
+        run: npm install -g truffle
+
       - name: Lint
         run: npm run lint
+
+      - name: Build smart contract
+        run: cd smart_contract && truffle build && cd ..
       - name: Test
         run: npm run test
+
       - name: Build
         run: npm run build
