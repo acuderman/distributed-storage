@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 
+import * as handlers from './command_handler'
+
 import { Command } from 'commander'
 const program = new Command()
+
+const DEFAULT_ETH_NODE_URL = 'http://127.0.0.1:7545'
+const DEFAULT_IPFS_NODE_URL = 'http://127.0.0.1:5001'
 
 program
   .name('distributed-storage-cli')
@@ -11,24 +16,23 @@ program
 program
   .command('upload')
   .description('Upload a file')
-  .argument('<string>', 'file path')
-  .action((_filePath: string, _options: unknown[]) => {
-    // TODO: implement handler and extract file name
-  })
-
-program
-  .command('download')
-  .description('Download file by CID')
-  .argument('<string>', 'IPFS file CID')
-  .action((_filePath: string) => {
-    // TODO: implement handler and check if file name and CID are mutually exclusive
+  .argument('<file_path>', 'file path')
+  .option('-eu, --eth-url <string>', 'Ethereum node url', DEFAULT_ETH_NODE_URL)
+  .option('-iu, --ipfs-url <string>', 'IPFS node url', DEFAULT_IPFS_NODE_URL)
+  .action(async (filePath: string, options: handlers.UploadOptions) => {
+    await handlers.uploadFile(filePath, options)
   })
 
 program
   .command('ls')
   .description('List uploaded files')
-  .action(() => {
-    // TODO: implement handler
+  .option(
+    '-eu, --eth-url <string>',
+    'Ethereum node http url',
+    DEFAULT_ETH_NODE_URL
+  )
+  .action(async (options: handlers.ListOptions) => {
+    await handlers.listFiles(options)
   })
 
 program.parse()
