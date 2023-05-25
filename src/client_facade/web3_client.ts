@@ -13,7 +13,7 @@ export function setupEthContract(web3: Web3, abi: AbiItem): Contract {
   return new web3.eth.Contract(abi)
 }
 
-export function ethAccountFromPrivateKey(
+export function getEthAccountFromPrivateKey(
   web3: Web3,
   privateKey: string
 ): Account {

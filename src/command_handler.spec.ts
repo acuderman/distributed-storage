@@ -66,7 +66,7 @@ describe('command_handler', () => {
       ethUrl: 'ethUrl',
     }
 
-    it('should list all already uploaded files', async () => {
+    it('should list already uploaded files', async () => {
       const ipfsFileUrl: string = 'ipfsFileUrl'
       const file: File = { file_name: 'file.js', ipfs_cid: 'cid' }
       when(eth.getFiles)

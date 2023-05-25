@@ -4,7 +4,7 @@ import { when } from 'jest-when'
 import * as eth from './eth'
 import {
   createWeb3Client,
-  ethAccountFromPrivateKey,
+  getEthAccountFromPrivateKey,
   setupEthContract,
 } from './client_facade/web3_client'
 import type Web3 from 'web3'
@@ -53,7 +53,7 @@ describe('eth', () => {
     when(createWeb3Client)
       .calledWith(ethNodeUrl)
       .mockReturnValue(mockWeb3Client)
-    when(ethAccountFromPrivateKey)
+    when(getEthAccountFromPrivateKey)
       .calledWith(mockWeb3Client, ethPrivateKey)
       .mockReturnValue(mockWeb3Account)
     when(setupEthContract)
