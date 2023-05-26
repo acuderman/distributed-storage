@@ -27,8 +27,10 @@ Distributed storage CLI implementation leveraging IPFS and Ethereum chain
 ## Build instructions
 
 - Clone the repository
+- Install dependencies
+  - `npm i`
 - Deploy smart contract
-    - `npm run deploy-contract`
+  - `npm run deploy-contract`
 - Build cli application
   - `npm run build-cli`
 
