@@ -7,6 +7,7 @@ import path from 'path'
 import {
   createWeb3Client,
   getEthAccountFromPrivateKey,
+  getGasLimit,
   setupEthContract,
 } from './client_facade/web3_client'
 
@@ -27,19 +28,20 @@ export interface File {
   ipfs_cid: string
 }
 
-const GAS_LIMIT: number = 6721975
-
 export async function storeCid(
   cid: string,
   filePath: string,
   ethPrivateKey: string,
   ethNodeUrl: string
 ): Promise<void> {
-  const [_, filesContract] = initializeWeb3Contract(ethNodeUrl, ethPrivateKey)
+  const [_, filesContract, gasLimit] = await initializeWeb3Contract(
+    ethNodeUrl,
+    ethPrivateKey
+  )
 
   const fileName: string = path.basename(filePath)
   await filesContract.methods.addFile(fileName, cid).send({
-    gas: GAS_LIMIT,
+    gas: gasLimit,
   })
 }
 
@@ -47,7 +49,7 @@ export async function getFiles(
   ethPrivateKey: string,
   ethNodeUrl: string
 ): Promise<File[]> {
-  const [web3Account, filesContract] = initializeWeb3Contract(
+  const [web3Account, filesContract, _] = await initializeWeb3Contract(
     ethNodeUrl,
     ethPrivateKey
   )
@@ -67,10 +69,10 @@ export async function getFiles(
   )
 }
 
-function initializeWeb3Contract(
+async function initializeWeb3Contract(
   ethNodeUrl: string,
   ethPrivateKey: string
-): [Account, Contract] {
+): Promise<[Account, Contract, number]> {
   const web3: Web3 = createWeb3Client(ethNodeUrl)
   const web3Account: Account = getEthAccountFromPrivateKey(web3, ethPrivateKey)
 
@@ -80,5 +82,7 @@ function initializeWeb3Contract(
   filesContract.options.address = filesContractJson.networks[network].address
   filesContract.options.from = web3Account.address
 
-  return [web3Account, filesContract]
+  const gasLimit: number = await getGasLimit(web3)
+
+  return [web3Account, filesContract, gasLimit]
 }
