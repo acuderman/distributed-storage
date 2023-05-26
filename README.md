@@ -29,7 +29,7 @@ Distributed storage CLI implementation leveraging IPFS and Ethereum chain
 - Clone the repository
 - Deploy smart contract
     - `npm run deploy-contract`
-- Build cli
+- Build cli application
   - `npm run build-cli`
 
 # Example
@@ -47,7 +47,7 @@ CLI offers two commands:
 ## File upload
 
 - File can be uploaded using the upload command. Make sure the cli is built, and the smart contract is deployed before running the command.
-Command prompt you to enter Ethereum account private key. Private key can be read from ganache UI (In the menu select Account and press on the key icon on the right).
+Command will prompt for the Ethereum account private key. Private key can be read from ganache UI (In the top menu select Account and press on the key icon on the right).
   - `npm run cli upload <path_to_file>` (eg. `npm run cli upload ./doc-images/file-upload-example.png`)
 
 ![file-upload](/doc-images/file-upload-example.png)
