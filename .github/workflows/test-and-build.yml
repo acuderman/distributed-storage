@@ -14,12 +14,12 @@ jobs:
         run: npm ci
 
       - name: Lint cli app
-        run: npm run lint
+        run: npm run lint-cli
 
       - name: Build smart contract
         run: npm run build-contract
       - name: Test cli app
-        run: npm run test
+        run: npm run test-cli
 
       - name: Build cli app
-        run: npm run build
+        run: npm run build-cli

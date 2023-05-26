@@ -4,13 +4,13 @@
   "description": "Distributed storage leveraging IPFS and Ethereum chain",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint . --ext '.ts'",
+    "lint-cli": "eslint . --ext '.ts'",
     "prettier": "prettier -c --write '**/*'",
-    "build": "tsc -p tsconfig.json",
+    "build-cli": "tsc -p tsconfig.json",
     "build-contract": "cd smart_contract && truffle build && cd ..",
     "deploy-contract": "cd smart_contract && truffle migrations && cd ..",
-    "bin": "node ./dist/index.js",
-    "test": "jest"
+    "cli": "node ./dist/index.js",
+    "test-cli": "jest"
   },
   "repository": {
     "type": "git",
