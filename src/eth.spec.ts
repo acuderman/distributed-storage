@@ -5,6 +5,7 @@ import * as eth from './eth'
 import {
   createWeb3Client,
   getEthAccountFromPrivateKey,
+  getGasLimit,
   setupEthContract,
 } from './client_facade/web3_client'
 import type Web3 from 'web3'
@@ -22,7 +23,6 @@ jest.mock('./client_facade/web3_client').mock('contract/Files.json', () => ({
   },
 }))
 
-const GAS_LIMIT: number = 6721975
 const mockWeb3Client: Web3 = {
   eth: {
     accounts: {
@@ -48,6 +48,7 @@ const mockContract: Contract = {
 describe('eth', () => {
   const ethPrivateKey: string = 'ethPrivateKey'
   const ethNodeUrl: string = 'ethNodeUrl'
+  const gasLimit: number = 1000000
 
   beforeEach(() => {
     when(createWeb3Client)
@@ -59,6 +60,7 @@ describe('eth', () => {
     when(setupEthContract)
       .calledWith(mockWeb3Client, filesContractJson.abi)
       .mockReturnValue(mockContract)
+    when(getGasLimit).calledWith(mockWeb3Client).mockResolvedValue(gasLimit)
   })
 
   describe('storeCid', () => {
@@ -75,7 +77,7 @@ describe('eth', () => {
 
       await eth.storeCid(cid, filePath, ethPrivateKey, ethNodeUrl)
 
-      expect(mockSend).toHaveBeenCalledWith({ gas: GAS_LIMIT })
+      expect(mockSend).toHaveBeenCalledWith({ gas: gasLimit })
     })
   })
 

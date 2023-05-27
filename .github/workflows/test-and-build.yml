@@ -12,16 +12,14 @@ jobs:
 
       - name: Install packages
         run: npm ci
-      - name: Install truffle
-        run: npm install -g truffle
 
       - name: Lint cli app
-        run: npm run lint
+        run: npm run lint-cli
 
       - name: Build smart contract
-        run: cd smart_contract && truffle build && cd ..
+        run: npm run build-contract
       - name: Test cli app
-        run: npm run test
+        run: npm run test-cli
 
       - name: Build cli app
-        run: npm run build
+        run: npm run build-cli

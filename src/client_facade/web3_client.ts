@@ -4,9 +4,7 @@ import { type Contract } from 'web3-eth-contract'
 import { type Account } from 'web3-core'
 
 export function createWeb3Client(ethNodeUrl: string): Web3 {
-  const web3: Web3 = new Web3(ethNodeUrl)
-
-  return web3
+  return new Web3(ethNodeUrl)
 }
 
 export function setupEthContract(web3: Web3, abi: AbiItem): Contract {
@@ -18,4 +16,10 @@ export function getEthAccountFromPrivateKey(
   privateKey: string
 ): Account {
   return web3.eth.accounts.privateKeyToAccount(privateKey)
+}
+
+export async function getGasLimit(web3: Web3): Promise<number> {
+  const latestBlock = await web3.eth.getBlock('latest')
+
+  return latestBlock.gasLimit
 }
