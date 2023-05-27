@@ -14,8 +14,13 @@ Distributed storage CLI implementation leveraging IPFS and Ethereum chain
 
 # Features
 
+![file-upload-help](/doc-images/cmd-help.png)
+
 - Upload any file to IPFS and store its cid in the smart contract
+  ![file-upload-help](/doc-images/upload-help.png)
+
 - List all already uploaded files
+  ![file-list-help](/doc-images/ls-help.png)
 
 # Environment Setup
 
@@ -35,16 +40,6 @@ Distributed storage CLI implementation leveraging IPFS and Ethereum chain
   - `npm run build-cli`
 
 # Example
-
-![file-upload-help](/doc-images/cmd-help.png)
-
-CLI offers two commands:
-  - File upload
-
-    ![file-upload-help](/doc-images/upload-help.png)
-  - File list
-
-    ![file-list-help](/doc-images/ls-help.png)
 
 ## File upload
 
